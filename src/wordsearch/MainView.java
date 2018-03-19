@@ -5,6 +5,11 @@
  */
 package wordsearch;
 
+import static java.awt.SystemColor.text;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author PC
@@ -116,10 +121,30 @@ public class MainView extends javax.swing.JFrame {
         // TODO add your handling code here:
         String wordSearch = jTextField1.getText();
         String textSearch = jTextArea1.getText();
-        System.out.println(wordSearch);
-        System.out.println(textSearch);
+//        Prints de control, asi sabemos que se esta buscando y en donde.
+//        System.out.println(wordSearch);
+//        System.out.println(textSearch);
+        searchWord(wordSearch, textSearch);
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    public void searchWord(String word, String text){
+        /*
+        Esta nueva funcion nos permite utilizar un metodo de busca hash para
+        identificar cuantas veces se repite un elemento en el string.
+        */
+        text = text.replace(".", " ");
+        Map<String, Integer> occurrences = new HashMap<String, Integer>();
+        
+        for ( String word2 : text.split(" ") ) {
+            Integer oldCount = occurrences.get(word);
+            if ( oldCount == null ) {
+               oldCount = 0;
+            }
+            occurrences.put(word2, oldCount + 1);
+        } 
+        System.out.println(occurrences);
+    }
+    
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -155,7 +180,6 @@ public class MainView extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainView().setVisible(true);
-//                soslslasda
             }
         });
     }
