@@ -311,7 +311,7 @@ public class MainView extends javax.swing.JFrame {
         String numberSearch = jTextField2.getText();
         String arrLenght = jTextField3.getText();
         Random ranInt = new Random();
-        
+       
         
         searchWordHash(wordSearch, textSearch);
         binariSearch(vector, Integer.parseInt(numberSearch));
@@ -329,10 +329,11 @@ public class MainView extends javax.swing.JFrame {
 
         System.out.println("arreglo desordenado: ");
         for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i]);
-            jTextArea5.append(arr[i]);
+//            System.out.println(arr[i]);
+            jTextArea5.append(Integer.toString(arr[i]));
+            jTextArea5.append("\n");
         }
-        
+
         int aux;
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = 0; j < arr.length - i - 1; j++) {
@@ -346,7 +347,9 @@ public class MainView extends javax.swing.JFrame {
 
         System.out.println("\n arreglo ordenado: ");
         for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i]);
+//            System.out.println(arr[i]);
+            jTextArea6.append(Integer.toString(arr[i]));
+            jTextArea6.append("\n");
         }
     }
     
