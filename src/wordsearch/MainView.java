@@ -311,11 +311,34 @@ public class MainView extends javax.swing.JFrame {
         String numberSearch = jTextField2.getText();
         String arrLenght = jTextField3.getText();
         Random ranInt = new Random();
-       
         
-        searchWordHash(wordSearch, textSearch);
-        binariSearch(vector, Integer.parseInt(numberSearch));
-        bubbleSearch(ranInt, arrLenght);
+        Runnable wordHash = () -> {
+            String threadName = Thread.currentThread().getName();
+            searchWordHash(wordSearch, textSearch);
+        };
+        
+        Runnable binari = () -> {
+            String threadName = Thread.currentThread().getName();
+            binariSearch(vector, Integer.parseInt(numberSearch));
+        };
+        
+        Runnable bubble = () -> {
+            String threadName = Thread.currentThread().getName();
+            bubbleSearch(ranInt, arrLenght);
+        };
+        
+        wordHash.run();
+        binari.run();
+        bubble.run();
+        
+        Thread thread = new Thread(wordHash);
+        thread.start();
+        Thread thread1 = new Thread(binari);
+        thread1.start();
+        Thread thread2 = new Thread(bubble);
+        thread2.start();
+        
+        System.out.println("Done!");
     }//GEN-LAST:event_jButton1ActionPerformed
     
     public void bubbleSearch(Random randomInt, String arrLenght) {
@@ -327,7 +350,7 @@ public class MainView extends javax.swing.JFrame {
             arr[i] = num;
         }
 
-        System.out.println("arreglo desordenado: ");
+//        System.out.println("arreglo desordenado: ");
         for (int i = 0; i < arr.length; i++) {
 //            System.out.println(arr[i]);
             jTextArea5.append(Integer.toString(arr[i]));
@@ -345,7 +368,7 @@ public class MainView extends javax.swing.JFrame {
             }
         }
 
-        System.out.println("\n arreglo ordenado: ");
+//        System.out.println("\n arreglo ordenado: ");
         for (int i = 0; i < arr.length; i++) {
 //            System.out.println(arr[i]);
             jTextArea6.append(Integer.toString(arr[i]));
