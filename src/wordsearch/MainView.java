@@ -328,13 +328,14 @@ public class MainView extends javax.swing.JFrame {
 
         for (int i = 0; i < arr.length; i++) {
             num = (randomInt.nextInt(1000));
+            arr[i] = num;
         }
 
         System.out.println("arreglo desordenado: ");
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }
-
+        
         int aux;
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = 0; j < arr.length - i - 1; j++) {
