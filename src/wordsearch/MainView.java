@@ -308,17 +308,13 @@ public class MainView extends javax.swing.JFrame {
             927, 934, 936, 955, 970, 984, 996, 998, 1000};
         String wordSearch = jTextField1.getText();
         String textSearch = jTextArea1.getText();
-//        String numberSearch = jTextField2.getText();
+        String numberSearch = jTextField2.getText();
         String arrLenght = jTextField3.getText();
         Random ranInt = new Random();
         
         
-//        Prints de control, asi sabemos que se esta buscando y en donde.
-//        System.out.println(wordSearch);
-//        System.out.println(textSearch);
-//        int intSearch = Integer.parseInt(numberSearch);
         searchWordHash(wordSearch, textSearch);
-//        binariSearch(vector, intSearch);
+        binariSearch(vector, Integer.parseInt(numberSearch));
         bubbleSearch(ranInt, arrLenght);
     }//GEN-LAST:event_jButton1ActionPerformed
     
@@ -334,6 +330,7 @@ public class MainView extends javax.swing.JFrame {
         System.out.println("arreglo desordenado: ");
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
+            jTextArea5.append(arr[i]);
         }
         
         int aux;
@@ -353,27 +350,34 @@ public class MainView extends javax.swing.JFrame {
         }
     }
     
-//    public int binariSearch(int vector[], int dato) {
-//        int n = vector.length;
-//        int center, inf = 0, sup = n - 1;
-//        StringBuilder newCenter = new StringBuilder();
-//        while (inf <= sup) {
-//            n = sup;
-//            center = (sup + inf) / 2;
-//            if (vector[center] == dato) {
-////                newCenter.append(center + 1);
-//                System.out.println(center + 1);
-//            } else if (dato < vector[center]) {
-//                sup = center - 1;
-//                System.out.println(sup);
-//            } else {
-//                inf = center + 1;
-//                System.out.println(inf);
-//            }
-//        }
-////        jTextArea4.setText(Integer.toString(newCenter));
-//        return 0;
-//    }
+    public int binariSearch(int vector[], int dato) {
+        int n = vector.length, a = 0;
+        int center, inf = 0, sup = n - 1;
+        boolean elNumeroEsta = false;
+
+        for (int x = 0; x < n; x++) {
+            if (dato == vector[x]) {
+                elNumeroEsta = true;
+                while (inf < sup) {
+                    center = (sup + inf) / 2;
+                    if (vector[center] == dato) {
+
+                    } else if (dato < vector[center]) {
+                        sup = center - 1;
+                    } else {
+                        inf = center + 1;
+                    }
+                    a = center;
+                }
+            }
+        }
+        if (elNumeroEsta == false) {
+            jTextArea4.setText("El numero no se encontro");
+        } else {
+            jTextArea4.setText("La pocision del numero es: #" + (a + 2));
+        }
+        return 0;
+    }
     
     public void searchWordHash(String word, String text) {
         /*
